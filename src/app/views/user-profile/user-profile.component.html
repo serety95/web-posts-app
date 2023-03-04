@@ -1,0 +1,11 @@
+<p>user-profile works!</p>
+{{user|json}}
+<ng-container *ngIf="userPosts">
+    <div class="post-list container px-5">
+        <ng-container *ngFor="let post of userPosts">
+            <app-post class="post-item" [post]="post"> </app-post>
+        </ng-container>
+    </div>
+  
+
+</ng-container>

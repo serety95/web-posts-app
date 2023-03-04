@@ -1,0 +1,10 @@
+.post-list {
+  max-height: calc(65vh - 100px);
+  overflow-y: auto;
+
+  .post-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,24 @@
+.post {
+  border: 1px solid teal;
+  min-height: 200px;
+  .card-body {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+}
+.post-list {
+  max-height: calc(85vh - 100px);
+  overflow-y: auto;
+  
+  .post-item {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+::ng-deep .pagination {
+  margin: 0;
+  position: fixed !important;
+  bottom: 10px !important;
+  right: 10px !important;
+}

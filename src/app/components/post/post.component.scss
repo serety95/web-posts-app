@@ -1,0 +1,61 @@
+.comment-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: calc(100% - 45px);
+    .comment-body {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.post {
+  border: 2px solid rgba(128, 128, 128, 0.203);
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 5px 10px;
+  .post-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgb(226, 226, 225);
+      color: teal;
+      margin-right: 5px;
+      object-fit: cover;
+    }
+    .post-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(100% - 45px);
+      .user-name {
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        color: black;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .post-body {
+    margin: 5px 55px;
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  }
+}
