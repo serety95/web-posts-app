@@ -61,12 +61,7 @@ export class AllPostsComponent implements OnInit {
         ...this.postsList.slice(startItem, endItem),
       ]),
     ];
-    this.returnedArray.sort((a, b) => a.id - b.id);
-    //this.returnedArray.push(...this.postsList.slice(startItem, endItem));
-    //this.returnedArray = this.postsList.slice(startItem, endItem);
-
-    console.log(this.returnedArray);
-    // this.returnedArray.push(...this.postsList.slice(startItem, endItem));
+    this.returnedArray.sort((a, b) => a.id - b.id)
     this.returnedArray.forEach((x) => {
       if (!x.user) {
         this.getUser(x);
@@ -74,9 +69,12 @@ export class AllPostsComponent implements OnInit {
       if (!x.comments) {
         this.getComments(x.id);
       }
-    });
+    })
 
-    this.focusOn();
+    setTimeout(() => {
+       this.focusOn();
+    }, 200);
+
 
     //  const input: HTMLInputElement = this.el.nativeElement as HTMLInputElement;
     //  input.focus();
@@ -105,10 +103,12 @@ export class AllPostsComponent implements OnInit {
     //this.pageChanged({ itemsPerPage: 10, page: this.pageNumber });
   }
   focusOn() {
-    let x = document.getElementById(`post${(this.pageNumber - 1) * 10 + 1}`);
-    console.log(`post${(this.pageNumber - 1) * 10 + 1}`, x);
-    if (x) {
-      x.scrollIntoView({
+    let focusedToElement = document.getElementById(
+      `post${(this.pageNumber - 1) * 10 + 1}`
+    );
+    console.log(`post${(this.pageNumber - 1) * 10 + 1}`, focusedToElement);
+    if (focusedToElement) {
+      focusedToElement.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
         inline: 'nearest',
