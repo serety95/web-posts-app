@@ -2,7 +2,7 @@
     <div class="post-header">
         <img class="profile-pic shadow-sm " src="../../../assets/3440844_avatar_male_man_person_profile_icon.png" alt="">
         <span *ngIf="post?.user" class="post-info">
-            <a class="user-name" [routerLink]="['/user',post.user.id]">
+            <a class="user-name" [routerLink]="['/users',post.user.id]">
                 {{post?.user?.name}}
             </a>
             <span>

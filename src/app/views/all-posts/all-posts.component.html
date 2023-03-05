@@ -1,11 +1,15 @@
-<div class="post-list container px-5">
-
-    <ng-container *ngFor="let post of returnedArray" >
-      <app-post class="post-item" [post]="post"> </app-post>
+<div class="contianer-fluid">
+  <div class="row">
+    <h2 for="">Posts</h2>
+  </div>
+  <div class="post-list row">
+    <ng-container *ngFor="let post of returnedArray">
+      <app-post class="post-item col-12" [post]="post"> </app-post>
     </ng-container>
-
+  </div>
+</div>
+<div class="post-list container">
 </div>
 <pagination
-  [totalItems]="postsList.length"
-  (pageChanged)="pageChanged($event)"
-></pagination>
+            [totalItems]="postsList.length"
+            (pageChanged)="pageChanged($event)"></pagination>

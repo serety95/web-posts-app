@@ -11,8 +11,10 @@ import { CommentComponent } from './components/comment/comment.component';
 import { PostComponent } from './components/post/post.component';
 import { UserProfileComponent } from './views/user-profile/user-profile.component';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { AllUsersComponent } from './views/all-users/all-users.component';
 @NgModule({
-  declarations: [AppComponent, AllPostsComponent, PostDetailsComponent, CommentComponent, PostComponent, UserProfileComponent],
+  declarations: [AppComponent, AllPostsComponent, PostDetailsComponent, CommentComponent, PostComponent, UserProfileComponent, NotFoundComponent, AllUsersComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
