@@ -6,20 +6,19 @@
     overflow-y: auto;
   }
 }
-.contianer-fluid{
+.contianer-fluid {
   height: 100%;
-.post-list {
+  .post-list {
+    height: calc(100% - 100px);
+    //max-height: calc(100% - 100px);
+    overflow-y: scroll;
 
-  
-  max-height: calc(100% - 100px);
-  overflow-y: auto;
-
-  .post-item {
-    display: block;
-    width: 100%;
-    margin-bottom: 20px;
+    .post-item {
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
+    }
   }
-}
 }
 
 ::ng-deep .pagination {

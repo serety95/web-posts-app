@@ -19,11 +19,7 @@ export class PostService {
       `https://jsonplaceholder.typicode.com/users/${userId}/posts`
     );
   }
-  getUserById(userId: number): any {
-    return this.http.get(
-      `https://jsonplaceholder.typicode.com/users/${userId}`
-    );
-  }
+ 
   getPostComments(postId) {
     return this.http.get(
       `https://jsonplaceholder.typicode.com/posts/${postId}/comments`

@@ -5,13 +5,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http:HttpClient) {}
-  getUserById(userId: number): any {
+  constructor(private http: HttpClient) {}
 
-  }
   getUsers() {
+    return this.http.get(`https://jsonplaceholder.typicode.com/users`);
+  }
+  getUserById(userId: number): any {
     return this.http.get(
-      `https://jsonplaceholder.typicode.com/users`
+      `https://jsonplaceholder.typicode.com/users/${userId}`
     );
   }
 }

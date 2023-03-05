@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserModel } from 'src/app/models/user-model';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,7 +13,8 @@ import { PostService } from 'src/app/services/post.service';
 export class UserProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private userService:UserService
   ) {}
   user: UserModel;
   userPosts: PostModel[] = [];
@@ -21,12 +23,11 @@ export class UserProfileComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       if (params.userId) {
         this.getUser(params.userId);
-
       }
     });
   }
   getUser(userId: number) {
-    this.postService.getUserById(userId).subscribe(
+    this.userService.getUserById(userId).subscribe(
       (user: UserModel) => {
         this.user = user;
         this.getUserPosts(user.id);
