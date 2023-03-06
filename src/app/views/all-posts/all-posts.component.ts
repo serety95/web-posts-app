@@ -20,20 +20,20 @@ export class AllPostsComponent implements OnInit {
   pageNumber: number = 1;
   currentPage: number;
   ngOnInit(): void {
-    this.postService.postsList.subscribe((x) => {
-      console.log(x);
-      if (x.length == 0) {
+    this.postService.getPostsListFromStorage();
+    this.postService.postsList.subscribe((postsData) => {
+      console.log(postsData);
+      if (postsData?.length == 0) {
         this.postService.getAllPosts().subscribe(
           (res) => {
             this.postsList = Object.values(res);
-            this.postService.setPostsList(Object.values(res));
+            this.postService.setPostsListToStorage(Object.values(res));
           },
           (err) => {
             console.log(err.message);
           }
         );
       } else {
-        this.postService.getAllPosts();
         this.postsList = this.postService.postsList.value;
         this.pageChanged({ page: 1, itemsPerPage: 10 });
       }
@@ -81,7 +81,7 @@ export class AllPostsComponent implements OnInit {
     if (this.currentPage != this.pageNumber) {
       setTimeout(() => {
         this.focusOn();
-      }, 200)
+      }, 200);
       this.currentPage = this.pageNumber;
     }
   }

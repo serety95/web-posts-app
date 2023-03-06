@@ -19,19 +19,20 @@ export class PostService {
       `https://jsonplaceholder.typicode.com/users/${userId}/posts`
     );
   }
- 
+
   getPostComments(postId) {
     return this.http.get(
       `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
     );
   }
-  setPostsList(postArray) {
+  setPostsListToStorage(postArray) {
     this.postsList.next(postArray);
     sessionStorage.setItem('postsList', JSON.stringify(this.postsList.value));
   }
-  getPostsList(){
+  getPostsListFromStorage() {
     let retrievedData = JSON.parse(sessionStorage.getItem('postsList'));
-    console.log("retrevied",retrievedData)
-    this.postsList.next(retrievedData);
+    if (retrievedData) {
+      this.postsList.next(retrievedData);
+    }
   }
 }
