@@ -2,7 +2,8 @@
   <div class="row">
     <h2 for="">Posts</h2>
   </div>
-  <div infinite-scroll [scrollWindow]="false" (scrolled)="onScrollDown()" class="post-list ">
+  <div infinite-scroll [infiniteScrollDistance]="0.2" [scrollWindow]="false" (scrolled)="onScrollDown()"
+       class="post-list ">
     <ng-container *ngFor="let post of returnedArray">
       <app-post [id]="'post'+post.id" class="post-item col-12" [post]="post"> </app-post>
     </ng-container>
@@ -11,7 +12,8 @@
 <div class="post-list container">
 </div>
 <pagination
+            [maxSize]="5"
             [(ngModel)]="pageNumber"
             [totalItems]="postsList.length"
             (pageChanged)="pageChanged($event)">
-          </pagination>
+</pagination>

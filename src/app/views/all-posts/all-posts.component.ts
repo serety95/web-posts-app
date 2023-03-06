@@ -18,6 +18,7 @@ export class AllPostsComponent implements OnInit {
   postsList: PostModel[] = [];
   returnedArray: PostModel[] = [];
   pageNumber: number = 1;
+  scrollPageNumber:number=1
   ngOnInit(): void {
     this.postService.postsList.subscribe((x) => {
       console.log(x);
@@ -26,7 +27,6 @@ export class AllPostsComponent implements OnInit {
           (res) => {
             this.postsList = Object.values(res);
             this.postService.setPostsList(Object.values(res));
-            this.pageChanged({ page: 1, itemsPerPage: 10 });
           },
           (err) => {
             console.log(err.message);
@@ -52,8 +52,8 @@ export class AllPostsComponent implements OnInit {
     });
   }
   pageChanged(event: PageChangedEvent): void {
-    this.pageNumber = event.page;
-    const startItem = (event.page - 1) * event.itemsPerPage;
+    //this.pageNumber = event.page;
+    const startItem = 0;
     const endItem = event.page * event.itemsPerPage;
     this.returnedArray = [
       ...new Set([
@@ -61,7 +61,7 @@ export class AllPostsComponent implements OnInit {
         ...this.postsList.slice(startItem, endItem),
       ]),
     ];
-    this.returnedArray.sort((a, b) => a.id - b.id)
+    this.returnedArray.sort((a, b) => a.id - b.id);
     this.returnedArray.forEach((x) => {
       if (!x.user) {
         this.getUser(x);
@@ -69,21 +69,20 @@ export class AllPostsComponent implements OnInit {
       if (!x.comments) {
         this.getComments(x.id);
       }
-    })
+    });
 
     setTimeout(() => {
-       this.focusOn();
+      this.focusOn();
     }, 200);
-
 
     //  const input: HTMLInputElement = this.el.nativeElement as HTMLInputElement;
     //  input.focus();
     //  input.select();
   }
   onScrollDown() {
-    this.pageNumber++;
-    const startItem = (this.pageNumber - 1) * 10;
-    const endItem = this.pageNumber * 10;
+    this.scrollPageNumber++;
+    const startItem = (this.scrollPageNumber - 1) * 10;
+    const endItem = this.scrollPageNumber * 10;
     this.returnedArray = [
       ...new Set([
         ...this.returnedArray,
@@ -100,13 +99,19 @@ export class AllPostsComponent implements OnInit {
         this.getComments(x.id);
       }
     });
+    this.pageNumber=this.scrollPageNumber
     //this.pageChanged({ itemsPerPage: 10, page: this.pageNumber });
   }
+ 
   focusOn() {
     let focusedToElement = document.getElementById(
-      `post${(this.pageNumber - 1) * 10 + 1}`
+      `post${
+        this.pageNumber > 1
+          ? (this.pageNumber - 1) * 10 + 1
+          : 1
+      }`
     );
-    console.log(`post${(this.pageNumber - 1) * 10 + 1}`, focusedToElement);
+    console.log( focusedToElement);
     if (focusedToElement) {
       focusedToElement.scrollIntoView({
         behavior: 'smooth',
