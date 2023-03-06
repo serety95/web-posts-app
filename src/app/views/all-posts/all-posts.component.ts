@@ -18,7 +18,7 @@ export class AllPostsComponent implements OnInit {
   postsList: PostModel[] = [];
   returnedArray: PostModel[] = [];
   pageNumber: number = 1;
-  scrollPageNumber:number=1
+  currentPage: number;
   ngOnInit(): void {
     this.postService.postsList.subscribe((x) => {
       console.log(x);
@@ -52,37 +52,17 @@ export class AllPostsComponent implements OnInit {
     });
   }
   pageChanged(event: PageChangedEvent): void {
-    //this.pageNumber = event.page;
-    const startItem = 0;
-    const endItem = event.page * event.itemsPerPage;
-    this.returnedArray = [
-      ...new Set([
-        ...this.returnedArray,
-        ...this.postsList.slice(startItem, endItem),
-      ]),
-    ];
-    this.returnedArray.sort((a, b) => a.id - b.id);
-    this.returnedArray.forEach((x) => {
-      if (!x.user) {
-        this.getUser(x);
-      }
-      if (!x.comments) {
-        this.getComments(x.id);
-      }
-    });
-
-    setTimeout(() => {
-      this.focusOn();
-    }, 200);
-
-    //  const input: HTMLInputElement = this.el.nativeElement as HTMLInputElement;
-    //  input.focus();
-    //  input.select();
+    this.pageNumber = event.page;
+    this.loadData();
   }
   onScrollDown() {
-    this.scrollPageNumber++;
-    const startItem = (this.scrollPageNumber - 1) * 10;
-    const endItem = this.scrollPageNumber * 10;
+    this.pageNumber++;
+    this.currentPage = this.pageNumber;
+  }
+  loadData() {
+    //const startItem = (this.pageNumber - 1) * 10;
+    const startItem = 0;
+    const endItem = this.pageNumber * 10;
     this.returnedArray = [
       ...new Set([
         ...this.returnedArray,
@@ -90,7 +70,6 @@ export class AllPostsComponent implements OnInit {
       ]),
     ];
     this.returnedArray.sort((a, b) => a.id - b.id);
-    //this.returnedArray.push(...this.postsList.slice(startItem, endItem));
     this.returnedArray.forEach((x) => {
       if (!x.user) {
         this.getUser(x);
@@ -99,19 +78,18 @@ export class AllPostsComponent implements OnInit {
         this.getComments(x.id);
       }
     });
-    this.pageNumber=this.scrollPageNumber
-    //this.pageChanged({ itemsPerPage: 10, page: this.pageNumber });
+    if (this.currentPage != this.pageNumber) {
+      setTimeout(() => {
+        this.focusOn();
+      }, 200)
+      this.currentPage = this.pageNumber;
+    }
   }
- 
   focusOn() {
     let focusedToElement = document.getElementById(
-      `post${
-        this.pageNumber > 1
-          ? (this.pageNumber - 1) * 10 + 1
-          : 1
-      }`
+      `post${this.pageNumber > 1 ? (this.pageNumber - 1) * 10 + 1 : 1}`
     );
-    console.log( focusedToElement);
+
     if (focusedToElement) {
       focusedToElement.scrollIntoView({
         behavior: 'smooth',
@@ -119,5 +97,11 @@ export class AllPostsComponent implements OnInit {
         inline: 'nearest',
       });
     }
+  }
+  getHovered(id) {
+    this.currentPage = Math.ceil(id / 10);
+    this.pageNumber = this.currentPage;
+
+    // console.log(id, this.currentPage, this.pageNumber);
   }
 }
