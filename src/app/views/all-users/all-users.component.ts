@@ -34,20 +34,22 @@ export class AllUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsersData();
-    this.usersList=this.userService.usersList.value
-    // this.getUsers();
+    if (this.userService.usersList.value.length < 1) {
+      this.getUsers();
+    } else {
+      this.usersList = [...this.userService.usersList.value];
+    }
   }
-  
-  // getUsers() {
-  //   this.userService.getUsers().subscribe(
-  //     (res) => {
-  //       console.log('users', res);
-  //       this.usersList = Object.values(res);
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
+
+  getUsers() {
+    this.userService.getUsers().subscribe(
+      (res) => {
+       
+        this.usersList = Object.values(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }

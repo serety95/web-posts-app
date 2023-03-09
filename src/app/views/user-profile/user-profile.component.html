@@ -1,11 +1,47 @@
-
-{{user|json}}
-<ng-container *ngIf="userPosts">
-    <div class="post-list container px-5">
-        <ng-container *ngFor="let post of userPosts">
-            <app-post class="post-item" [post]="post"> </app-post>
-        </ng-container>
+{{ user | json }}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div
+                 class="single_advisor_profile wow fadeInUp"
+                 data-wow-delay="0.3s"
+                 style="
+          visibility: visible;
+          animation-delay: 0.3s;
+          animation-name: fadeInUp;
+        ">
+                <!-- Team Thumb-->
+                <div class="advisor_thumb">
+                    <img
+                         src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                         alt="" />
+                    <!-- Social Info-->
+                    <div class="social-info">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a [href]='user.website' target="_blank"><i class="fa fa-globe"></i></a>
+                    </div>
+                </div>
+                <!-- Team Details-->
+                <div class="single_advisor_details_info">
+                    <h6>{{ user.name }}</h6>
+                    <p class="designation">@{{ user.username }}</p>
+                    <p>email:{{user.email}}</p>
+                    <p>phone:{{user.phone}}</p>
+                    <p>company:{{user.company.name}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <ng-container *ngIf="userPosts">
+                <div class="post-list container px-5">
+                    <div class="row">user's posts</div>
+                    <ng-container *ngFor="let post of userPosts">
+                        <app-post class="post-item" [post]="post"> </app-post>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
     </div>
-
-
-</ng-container>
+</div>

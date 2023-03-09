@@ -1,20 +1,41 @@
-<p>all-users works!</p>
 <div class="container-fluid">
-    <div class="row">
-        <div [routerLink]="['/users',user.id]" *ngFor="let user of usersList;let i=index" class="col-2 mb-2">
-            <div [class.bg-info]="activeUser==i+1" class="card ">
-                <div class="card-body d-flex flex-column">
-                    <span>{{user.name}}</span>
-                    <span>{{user.username}}</span>
-                    <span>{{user.email}}</span>
-                    <span>{{user.company.name}}</span>
-
-                </div>
-
-            </div>
+  <div class="row">
+    <h3>Users List</h3>
+  </div>
+  <div class="row user-list">
+    <div
+      [routerLink]="['/users', user.id]"
+      *ngFor="let user of usersList; let i = index"
+      class="col-lg-3 col-md-4 col-sm-6 col-12 mb-2"
+    >
+      <div
+        class="single_advisor_profile wow fadeInUp"
+        data-wow-delay="0.3s"
+        style="
+          visibility: visible;
+          animation-delay: 0.3s;
+          animation-name: fadeInUp;
+        "
+      >
+        <!-- Team Thumb-->
+        <div class="advisor_thumb">
+          <img
+            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+            alt=""
+          />
+          <!-- Social Info-->
+          <div class="social-info">
+            <a href="#"><i class="fa fa-facebook"></i></a
+            ><a href="#"><i class="fa fa-twitter"></i></a
+            ><a href="#"><i class="fa fa-linkedin"></i></a>
+          </div>
         </div>
+        <!-- Team Details-->
+        <div class="single_advisor_details_info">
+          <h6>{{ user.name }}</h6>
+          <p class="designation">@{{ user.username }}</p>
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <router-outlet class="col-12"></router-outlet>
-    </div>
+  </div>
 </div>
