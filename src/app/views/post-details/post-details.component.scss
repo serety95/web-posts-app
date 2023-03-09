@@ -35,6 +35,7 @@
   }
   .post-body {
     margin: 5px 55px;
+    width: calc(100% - 55px);
     .user-info {
       display: flex;
       flex-direction: column;

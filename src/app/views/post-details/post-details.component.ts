@@ -24,17 +24,8 @@ export class PostDetailsComponent implements OnInit {
     console.log(this.postService.postsList.value);
     this.postService.getPostsListFromStorage();
     if (this.postService.postsList.value.length > 0) {
-      this.post = this.postService.postsList.value.find(
-        (post: PostModel) => post.id == +this.route.snapshot.params['postId']
-      );
-      let postedUser = this.userService.usersList.value.find(
-        (user: UserModel) => user.id == this.post.userId
-      );
-      if (postedUser) {
-        this.post.user = postedUser;
-      } else {
-        this.getUserData();
-      }
+      this.checkPostData();
+      this.checkUserData();
       this.getComments();
     } else {
       this.postService.getPost(this.route.snapshot.params['postId']).subscribe(
@@ -69,8 +60,36 @@ export class PostDetailsComponent implements OnInit {
     });
   }
   getUserData() {
-    this.userService.getUserById(this.post.userId).subscribe((res) => {
-      this.post.user = res;
-    });
+    this.userService
+      .getUserById(
+        this.post?.userId
+          ? this.post?.userId
+          : this.route.snapshot.params['postId']
+      )
+      .subscribe((res) => {
+        this.post.user = res;
+      });
   }
+  checkPostData() {
+    let retrivedPostFromStorage = this.postService.postsList.value.find(
+      (post: PostModel) => post.id == +this.route.snapshot.params['postId']
+    );
+    console.log('retrivedPostFromStorage', retrivedPostFromStorage);
+    if (retrivedPostFromStorage != undefined) {
+      this.post = retrivedPostFromStorage;
+    } else {
+      this.postNotFound = true;
+    }
+  }
+  checkUserData() {
+    let postedUser = this.userService.usersList.value.find(
+      (user: UserModel) => user.id == this.post.userId
+    );
+    if (postedUser != undefined) {
+      this.post.user = postedUser;
+    } else {
+      this.getUserData();
+    }
+  }
+        
 }
