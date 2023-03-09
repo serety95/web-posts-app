@@ -2,10 +2,28 @@
   <div class="row">
     <h2 for="">Posts</h2>
   </div>
+  <div *ngIf="usersList.length>0" class="row filter-row">
+    <div class="col-3">
+      <ng-select [items]="usersList"
+                 [multiple]="true"
+                 bindLabel="name"
+                 [(ngModel)]="selectedUser"
+                 (change)="selectedUsersChange($event)"
+                 placeholder="filter with users"
+                 >
+      </ng-select>
+    </div>
+    <div class="col-3">
+      <button (click)="sumbitFilter()" class="btn btn-info">
+        submit
+      </button>
+    </div>
+  </div>
   <div infinite-scroll [infiniteScrollDistance]="0.2" [scrollWindow]="false" (scrolled)="onScrollDown()"
        class="post-list ">
     <ng-container *ngFor="let post of returnedArray">
-      <app-post (mouseenter)="getHovered(post.id)" [id]="'post'+post.id" class="post-item col-12" [post]="post"> </app-post>
+      <app-post (mouseenter)="getHovered(post.id)" [id]="'post'+post.id" class="post-item col-12" [post]="post">
+      </app-post>
     </ng-container>
   </div>
 </div>

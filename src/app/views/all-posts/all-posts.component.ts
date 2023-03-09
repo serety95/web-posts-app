@@ -19,7 +19,17 @@ export class AllPostsComponent implements OnInit {
   returnedArray: PostModel[] = [];
   pageNumber: number = 1;
   currentPage: number;
+  selectedUser: UserModel;
+  usersList: UserModel[] = [];
+  selectedUsersIds: number[] = [];
   ngOnInit(): void {
+    if ((this.userService.usersList.value.length < 1)) {
+      this.loadUsersData();
+    }else{
+      this.usersList=[...this.userService.usersList.value]
+    }
+
+    console.log(this.usersList);
     this.postService.getPostsListFromStorage();
     this.postService.postsList.subscribe((postsData) => {
       console.log(postsData);
@@ -63,12 +73,20 @@ export class AllPostsComponent implements OnInit {
     //const startItem = (this.pageNumber - 1) * 10;
     const startItem = 0;
     const endItem = this.pageNumber * 10;
-    this.returnedArray = [
-      ...new Set([
-        ...this.returnedArray,
-        ...this.postsList.slice(startItem, endItem),
-      ]),
-    ];
+
+    if (this.selectedUsersIds.length > 0) {
+      this.returnedArray = this.postsList.filter((x: PostModel) =>
+        this.selectedUsersIds.includes(x.userId)
+      );
+    } else {
+      this.returnedArray = [
+        ...new Set([
+          ...this.returnedArray,
+          ...this.postsList.slice(startItem, endItem),
+        ]),
+      ];
+    }
+
     this.returnedArray.sort((a, b) => a.id - b.id);
     this.returnedArray.forEach((x) => {
       if (!x.user) {
@@ -103,5 +121,28 @@ export class AllPostsComponent implements OnInit {
     this.pageNumber = this.currentPage;
 
     // console.log(id, this.currentPage, this.pageNumber);
+  }
+  selectedUsersChange(e: UserModel[]) {
+    this.selectedUsersIds = [];
+    e.forEach((user) => {
+      this.selectedUsersIds.push(user.id);
+    });
+    console.log(this.selectedUsersIds);
+  }
+  sumbitFilter() {
+    this.loadData();
+    console.log(this.returnedArray);
+  }
+  loadUsersData() {
+    this.userService.getUsers().subscribe(
+      (res) => {
+        this.usersList = [...Object.values(res)];
+        this.userService.usersList.next(Object.values(res));
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

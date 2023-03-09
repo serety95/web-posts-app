@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +16,7 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { AllUsersComponent } from './views/all-users/all-users.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +37,9 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     InfiniteScrollModule,
     FormsModule,
+    NgSelectModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
