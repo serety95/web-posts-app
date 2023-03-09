@@ -5,7 +5,21 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap");
 html {
-    overflow: hidden;
+  overflow: hidden;
+}
+.section-header {
+  max-width: 100%;
+  padding: 5px 20px;
+  background-color: #980060;
+  border-radius: 15px;
+  font-size: 30px;
+  display: block;
+  color: white;
+  letter-spacing: 10px;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 10px;
 }
