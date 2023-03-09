@@ -2,8 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 ## Steps
-install packeges with : npm i
-install angular cli with : npm i -g @angular/cli
+install packeges with : npm i .
+
+install angular cli with : npm i -g @angular/cli .
+
 
 
 ## Development server
