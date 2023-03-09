@@ -3,7 +3,7 @@
     <h2 class="section-header" for="">Posts</h2>
   </div>
   <div *ngIf="usersList.length>0" class="row filter-row">
-    <div class="col-3">
+    <div class="col-lg-3 col-md-6 col-9">
       <ng-select [items]="usersList"
                  [multiple]="true"
                  bindLabel="name"
@@ -13,7 +13,7 @@
                  >
       </ng-select>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-6 col-3">
       <button (click)="sumbitFilter()" class="btn btn-info search-btn">
         Search
       </button>
