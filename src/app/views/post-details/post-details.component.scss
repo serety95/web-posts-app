@@ -38,9 +38,12 @@
     width: calc(100% - 55px);
     .user-info {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+
+      justify-content: flex-start;
+      align-items: center;
+      span{
+        margin-right: 15px;
+      }
     }
     .comments-list {
       max-height: 330px;

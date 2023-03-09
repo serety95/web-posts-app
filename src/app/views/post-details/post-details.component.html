@@ -4,7 +4,7 @@
     </div>
     <div *ngIf="!postNotFound" class="row post shadow">
         <div class="post-header">
-            <img class="profile-pic shadow-sm " src="../../../assets/3440844_avatar_male_man_person_profile_icon.png"
+            <img class="profile-pic shadow-sm "[src]="getAvatarLink(post?.userId)"
                  alt="">
             <span *ngIf="post?.user" class="post-info">
                 <a class="user-name" [routerLink]="['/users',post.user.id]">
@@ -16,13 +16,13 @@
         <div class="post-body">
             <div class="row">
                 <span class="fw-bold">{{post.title}}</span>
-                <span class="fw-semibold">
+                <span class="fw-light">
                     {{post.body}}
                 </span>
             </div>
             <div *ngIf="post?.user" class="user-info">
-                <span class="badge badge-pill badge-info bg-info my-2">phone:{{post?.user?.phone}}</span>
-                <span class="badge badge-pill badge-info bg-info my-2">company:{{post?.user?.company?.name}}</span>
+                <span class="mr-2"><strong>phone:</strong> {{post?.user?.phone}}</span>
+                <span class=""><strong>company:</strong>{{post?.user?.company?.name}}</span>
             </div>
             <ng-container *ngIf="post.comments">
                 <div class="shadow-sm px-3 py-1 my-2 mx-1">
