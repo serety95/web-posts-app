@@ -1,7 +1,10 @@
-{{ user | json }}
+
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <h3>User Profile</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-5 col-12">
             <div
                  class="single_advisor_profile wow fadeInUp"
                  data-wow-delay="0.3s"
@@ -33,10 +36,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-lg-9 col-md-7 col-12 ">
+            <div class="row ">
+                <h3>User Posts</h3>
+            </div>
             <ng-container *ngIf="userPosts">
-                <div class="post-list container px-5">
-                    <div class="row">user's posts</div>
+                <div class="post-list container ">
                     <ng-container *ngFor="let post of userPosts">
                         <app-post class="post-item" [post]="post"> </app-post>
                     </ng-container>

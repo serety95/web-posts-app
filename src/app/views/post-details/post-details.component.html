@@ -1,5 +1,8 @@
 <div class="container px-5">
-    <div class="row post shadow">
+    <div class="row">
+        <h3>Post Details</h3>
+    </div>
+    <div *ngIf="!postNotFound" class="row post shadow">
         <div class="post-header">
             <img class="profile-pic shadow-sm " src="../../../assets/3440844_avatar_male_man_person_profile_icon.png"
                  alt="">
@@ -39,5 +42,7 @@
             </ng-container>
         </div>
     </div>
-    <div *ngIf="!post" class="row"> post not found </div>
+    <div *ngIf="postNotFound" class="row">
+        <h3>post not found</h3>
+    </div>
 </div>

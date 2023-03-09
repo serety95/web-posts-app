@@ -1,7 +1,5 @@
-
 :host {
-  font-family: Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Roboto Slab', serif;
   font-size: 14px;
   color: #333;
   box-sizing: border-box;
@@ -16,4 +14,6 @@
   margin-top: 66px;
   height: calc(100vh - 66px);
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

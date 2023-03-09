@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PostDetailsComponent implements OnInit {
   post: PostModel;
-  postNotFound:boolean=false;
+  postNotFound: boolean = false;
   constructor(
     private postService: PostService,
     private route: ActivatedRoute,
@@ -33,20 +33,23 @@ export class PostDetailsComponent implements OnInit {
       if (postedUser) {
         this.post.user = postedUser;
       } else {
-        this.userService.getUserById(this.post.userId).subscribe((res) => {
-          this.post.user = res;
-        });
+        this.getUserData();
       }
-    } else {
-      this.postService.getAllPosts().subscribe((res) => {
-        this.post = Object.values(res).find(
-          (post: PostModel) => post.id == this.route.snapshot.params['postId']
-        );
-      });
-    }
-    if (!this.post.comments) {
       this.getComments();
+    } else {
+      this.postService.getPost(this.route.snapshot.params['postId']).subscribe(
+        (res: PostModel) => {
+          this.post = res;
+          this.getUserData();
+          this.getComments();
+        },
+        (err) => {
+          console.log(err);
+          this.postNotFound = true;
+        }
+      );
     }
+
     console.log(this.post);
   }
   addComment(e) {
@@ -63,6 +66,11 @@ export class PostDetailsComponent implements OnInit {
   getComments() {
     this.postService.getPostComments(this.post.id).subscribe((res) => {
       this.post.comments = Object.values(res);
+    });
+  }
+  getUserData() {
+    this.userService.getUserById(this.post.userId).subscribe((res) => {
+      this.post.user = res;
     });
   }
 }
