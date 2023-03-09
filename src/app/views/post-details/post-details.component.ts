@@ -1,8 +1,10 @@
+import { UserModel } from './../../models/user-model';
 import { PostModel } from './../../models/post-model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommentModel } from 'src/app/models/comment-model';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-post-details',
@@ -11,15 +13,40 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class PostDetailsComponent implements OnInit {
   post: PostModel;
+  postNotFound:boolean=false;
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.post = this.postService.postsList.value.find(
-      (x) => x.id == +this.route.snapshot.params['postId']
-    );
+    console.log(this.postService.postsList.value);
+    this.postService.getPostsListFromStorage();
+    if (this.postService.postsList.value.length > 0) {
+      this.post = this.postService.postsList.value.find(
+        (post: PostModel) => post.id == +this.route.snapshot.params['postId']
+      );
+      let postedUser = this.userService.usersList.value.find(
+        (user: UserModel) => user.id == this.post.userId
+      );
+      if (postedUser) {
+        this.post.user = postedUser;
+      } else {
+        this.userService.getUserById(this.post.userId).subscribe((res) => {
+          this.post.user = res;
+        });
+      }
+    } else {
+      this.postService.getAllPosts().subscribe((res) => {
+        this.post = Object.values(res).find(
+          (post: PostModel) => post.id == this.route.snapshot.params['postId']
+        );
+      });
+    }
+    if (!this.post.comments) {
+      this.getComments();
+    }
     console.log(this.post);
   }
   addComment(e) {
@@ -32,5 +59,10 @@ export class PostDetailsComponent implements OnInit {
     };
 
     this.post.comments.push(newComment);
+  }
+  getComments() {
+    this.postService.getPostComments(this.post.id).subscribe((res) => {
+      this.post.comments = Object.values(res);
+    });
   }
 }

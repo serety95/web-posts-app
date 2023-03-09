@@ -1,43 +1,43 @@
 <div class="container px-5">
-<div class="row post shadow">
-    <div class="post-header">
-        <img class="profile-pic shadow-sm " src="../../../assets/3440844_avatar_male_man_person_profile_icon.png"
-             alt="">
-        <span *ngIf="post?.user" class="post-info">
-            <a class="user-name" [routerLink]="['/users',post.user.id]">
-                {{post?.user?.name}}
-            </a>
-            <span> posted 5 mins ago </span>
-        </span>
-    </div>
-    <div class="post-body">
-        <div class="row">
-            <a [routerLink]="['/post/details',post.id]">more details</a>
-            <span class="fw-bold">{{post.title}}</span>
-            <span class="fw-semibold">
-                {{post.body}}
+    <div class="row post shadow">
+        <div class="post-header">
+            <img class="profile-pic shadow-sm " src="../../../assets/3440844_avatar_male_man_person_profile_icon.png"
+                 alt="">
+            <span *ngIf="post?.user" class="post-info">
+                <a class="user-name" [routerLink]="['/users',post.user.id]">
+                    {{post?.user?.name}}
+                </a>
+                <span> posted 5 mins ago </span>
             </span>
         </div>
-        <div *ngIf="post?.user" class="user-info">
-            <span class="badge badge-pill badge-info bg-info my-2">phone:{{post?.user?.phone}}</span>
-            <span class="badge badge-pill badge-info bg-info my-2">company:{{post?.user?.company?.name}}</span>
-        </div>
-        <ng-container *ngIf="post.comments">
-            <div class="shadow-sm px-3 py-1 my-2 mx-1">
-                <div class=" fw-bold">{{post?.comments?.length}} comments</div>
-                <div class="form-group my-2">
-                    <input placeholder='Write a comment…' class="form-control" type="text" name="add-comment" id="add"
-                           (keydown.enter)="addComment($event)">
-                </div>
-                <hr>
-                <div class="comments-list ">
-                    <app-comment [comment]="comment"
-                                 *ngFor="let comment of post.comments" class="comment">
-                    </app-comment>
-                </div>
+        <div class="post-body">
+            <div class="row">
+                <span class="fw-bold">{{post.title}}</span>
+                <span class="fw-semibold">
+                    {{post.body}}
+                </span>
             </div>
-        </ng-container>
+            <div *ngIf="post?.user" class="user-info">
+                <span class="badge badge-pill badge-info bg-info my-2">phone:{{post?.user?.phone}}</span>
+                <span class="badge badge-pill badge-info bg-info my-2">company:{{post?.user?.company?.name}}</span>
+            </div>
+            <ng-container *ngIf="post.comments">
+                <div class="shadow-sm px-3 py-1 my-2 mx-1">
+                    <div class=" fw-bold">{{post?.comments?.length}} comments</div>
+                    <div class="form-group my-2">
+                        <input placeholder='Write a comment…' class="form-control" type="text" name="add-comment"
+                               id="add"
+                               (keydown.enter)="addComment($event)">
+                    </div>
+                    <hr>
+                    <div class="comments-list ">
+                        <app-comment [comment]="comment"
+                                     *ngFor="let comment of post.comments" class="comment">
+                        </app-comment>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
     </div>
+    <div *ngIf="!post" class="row"> post not found </div>
 </div>
-</div>
-

@@ -51,9 +51,9 @@ export class AllPostsComponent implements OnInit {
   }
 
   getComments(postId) {
-    let x: PostModel = this.postsList.find((x) => x.id == postId);
+    let post: PostModel = this.postsList.find((x) => x.id == postId);
     this.postService.getPostComments(postId).subscribe((res) => {
-      x.comments = Object.values(res);
+      post.comments = Object.values(res);
     });
   }
   getUser(post) {

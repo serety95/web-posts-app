@@ -1,0 +1,75 @@
+.post {
+  border: 2px solid rgba(128, 128, 128, 0.203);
+  border-radius: 15px;
+  padding: 5px 10px;
+  position: relative;
+  .post-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgb(226, 226, 225);
+      color: teal;
+      margin-right: 5px;
+      object-fit: cover;
+    }
+    .post-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(100% - 45px);
+      .user-name {
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        color: black;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .post-body {
+    margin: 5px 55px;
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .comments-list {
+      max-height: 330px;
+      overflow-y: auto;
+    }
+  }
+  .more-details-btn {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1em;
+    text-transform: uppercase;
+    //Button shape & animation
+    border-radius: 0px 15px 0px 15px;
+    padding: 12px 20px;
+    background-size: 200% auto;
+    color: white;
+    background-image: linear-gradient(
+      to right,
+      #6470a3 0%,
+      #03bbb2 50%,
+      #99a4da 100%
+    );
+    transition: 0.5s;
+    &:hover {
+      background-position: right center;
+    }
+  }
+}
