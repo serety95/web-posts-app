@@ -54,7 +54,11 @@ export class UserProfileComponent implements OnInit {
       });
   }
   getAvatarLink(userId): string {
-    
-    return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
+    if(userId>8){
+      return `https://bootdey.com/img/Content/avatar/avatar8.png`;
+    }else{
+
+      return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
+    }
   }
 }

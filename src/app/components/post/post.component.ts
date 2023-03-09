@@ -22,9 +22,13 @@ export class PostComponent implements OnInit {
     };
 
     this.post.comments.push(newComment);
-
   }
-  getAvatarLink(userId):string{
-    return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
+ 
+  getAvatarLink(userId): string {
+    if (userId > 8) {
+      return `https://bootdey.com/img/Content/avatar/avatar8.png`;
+    } else {
+      return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
+    }
   }
 }
