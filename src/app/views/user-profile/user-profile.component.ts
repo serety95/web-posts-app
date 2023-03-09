@@ -49,7 +49,7 @@ export class UserProfileComponent implements OnInit {
             post.user = myuser;
           });
 
-          console.log(this.userPosts);
+         
         }
       });
   }

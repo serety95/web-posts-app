@@ -23,7 +23,7 @@ export class UserService {
     this.getUsers().subscribe(
       (res) => {
         this.usersList.next(Object.values(res))
-        console.log(this.usersList.value)
+       
       },
       (err) => {
         console.log(err);

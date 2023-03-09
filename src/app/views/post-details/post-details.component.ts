@@ -21,7 +21,7 @@ export class PostDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.postService.postsList.value);
+
     this.postService.getPostsListFromStorage();
     if (this.postService.postsList.value.length > 0) {
       this.checkPostData();
@@ -41,7 +41,7 @@ export class PostDetailsComponent implements OnInit {
       );
     }
 
-    console.log(this.post);
+
   }
   addComment(e) {
     let newComment: CommentModel = {
@@ -74,7 +74,7 @@ export class PostDetailsComponent implements OnInit {
     let retrivedPostFromStorage = this.postService.postsList.value.find(
       (post: PostModel) => post.id == +this.route.snapshot.params['postId']
     );
-    console.log('retrivedPostFromStorage', retrivedPostFromStorage);
+   
     if (retrivedPostFromStorage != undefined) {
       this.post = retrivedPostFromStorage;
     } else {

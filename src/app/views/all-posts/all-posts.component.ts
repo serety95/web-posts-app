@@ -29,10 +29,10 @@ export class AllPostsComponent implements OnInit {
       this.usersList=[...this.userService.usersList.value]
     }
 
-    console.log(this.usersList);
+
     this.postService.getPostsListFromStorage();
     this.postService.postsList.subscribe((postsData) => {
-      console.log(postsData);
+
       if (postsData?.length == 0) {
         this.postService.getAllPosts().subscribe(
           (res) => {
@@ -120,25 +120,25 @@ export class AllPostsComponent implements OnInit {
     this.currentPage = Math.ceil(id / 10);
     this.pageNumber = this.currentPage;
 
-    // console.log(id, this.currentPage, this.pageNumber);
+
   }
   selectedUsersChange(e: UserModel[]) {
     this.selectedUsersIds = [];
     e.forEach((user) => {
       this.selectedUsersIds.push(user.id);
     });
-    console.log(this.selectedUsersIds);
+
   }
   sumbitFilter() {
     this.loadData();
-    console.log(this.returnedArray);
+
   }
   loadUsersData() {
     this.userService.getUsers().subscribe(
       (res) => {
         this.usersList = [...Object.values(res)];
         this.userService.usersList.next(Object.values(res));
-        console.log(res);
+       
       },
       (err) => {
         console.log(err);
