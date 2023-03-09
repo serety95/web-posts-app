@@ -11,18 +11,15 @@
         </span>
     </div>
     <div  class="post-body">
+        <a class="more-details-btn" [routerLink]="['/post/details',post.id]">more details</a>
         <div class="row">
-            <a [routerLink]="['/post/details',post.id]">more details</a>
+
             <span class="fw-bold">{{post.title}}</span>
             <span class="fw-semibold">
                 {{post.body}}
             </span>
         </div>
-        <div *ngIf="post?.user" class="user-info">
-
-            <span class="badge badge-pill badge-info bg-info my-2">phone:{{post?.user?.phone}}</span>
-            <span class="badge badge-pill badge-info bg-info my-2">company:{{post?.user?.company?.name}}</span>
-        </div>
+      
         <ng-container *ngIf="post.comments">
             <div class="shadow-sm px-3 py-1 my-2 mx-1">
                 <div class=" fw-bold">{{post?.comments?.length}} comments</div>
