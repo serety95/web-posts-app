@@ -14,7 +14,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-    private userService:UserService
+    private userService: UserService
   ) {}
   user: UserModel;
   userPosts: PostModel[] = [];
@@ -52,5 +52,9 @@ export class UserProfileComponent implements OnInit {
           console.log(this.userPosts);
         }
       });
+  }
+  getAvatarLink(userId): string {
+    
+    return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
   }
 }

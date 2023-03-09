@@ -1,25 +1,21 @@
 <div class="post shadow">
     <div class="post-header">
-        <img class="profile-pic shadow-sm " src="../../../assets/3440844_avatar_male_man_person_profile_icon.png" alt="">
+        <img class="profile-pic shadow-sm " [src]="getAvatarLink(post?.userId)" alt="">
         <span *ngIf="post?.user" class="post-info">
             <a class="user-name" [routerLink]="['/users',post.user.id]">
                 {{post?.user?.name}}
             </a>
-            <span>
-                posted 5 mins ago
-            </span>
+            <span> posted 5 mins ago </span>
         </span>
     </div>
-    <div  class="post-body">
+    <div class="post-body">
         <a class="more-details-btn" [routerLink]="['/post/details',post.id]">more details</a>
         <div class="row">
-
             <span class="fw-bold">{{post.title}}</span>
             <span class="fw-semibold">
                 {{post.body}}
             </span>
         </div>
-      
         <ng-container *ngIf="post.comments">
             <div class="shadow-sm px-3 py-1 my-2 mx-1">
                 <div class=" fw-bold">{{post?.comments?.length}} comments</div>

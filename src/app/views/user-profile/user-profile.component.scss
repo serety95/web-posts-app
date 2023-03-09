@@ -9,6 +9,9 @@
   }
 }
 .single_advisor_profile {
+  visibility: visible;
+  animation-delay: 0.3s;
+  animation-name: fadeInUp;
   position: relative;
   margin-bottom: 50px;
   -webkit-transition-duration: 500ms;
@@ -22,9 +25,12 @@
     z-index: 1;
     border-radius: 15px 15px 0 0;
     margin: 0 auto;
-    padding: 30px 30px 0 30px;
-    background-color: #3260A7;
+
+    background-color: #3260a7;
     overflow: hidden;
+    img{
+      object-fit: cover;
+    }
     &::after {
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms;
@@ -54,7 +60,7 @@
         }
         &:hover,
         :focus {
-          color: #3260A7;
+          color: #3260a7;
         }
       }
     }
@@ -75,7 +81,7 @@
       z-index: 1;
       width: 50px;
       height: 3px;
-      background-color: #3260A7;
+      background-color: #3260a7;
       content: "";
       top: 12px;
       right: 30px;
@@ -114,7 +120,7 @@
 }
 .single_advisor_profile:hover .advisor_thumb::after,
 .single_advisor_profile:focus .advisor_thumb::after {
-  background-color: #56326F;
+  background-color: #56326f;
 }
 .single_advisor_profile:hover .advisor_thumb .social-info a,
 .single_advisor_profile:focus .advisor_thumb .social-info a {
@@ -128,7 +134,7 @@
 }
 .single_advisor_profile:hover .single_advisor_details_info,
 .single_advisor_profile:focus .single_advisor_details_info {
-  background-color: #56326F;
+  background-color: #56326f;
 }
 .single_advisor_profile:hover .single_advisor_details_info::after,
 .single_advisor_profile:focus .single_advisor_details_info::after {

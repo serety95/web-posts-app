@@ -22,6 +22,9 @@ export class PostComponent implements OnInit {
     };
 
     this.post.comments.push(newComment);
-    
+
+  }
+  getAvatarLink(userId):string{
+    return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
   }
 }
