@@ -34,6 +34,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Screens
 1-all posts
+
 2-post details
+
 3-all users
-3-user profile
+
+4-user profile
