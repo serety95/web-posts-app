@@ -44,12 +44,18 @@ export class AllUsersComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe(
       (res) => {
-       
         this.usersList = Object.values(res);
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+  getAvatarLink(userId): string {
+    if (userId > 8) {
+      return `https://bootdey.com/img/Content/avatar/avatar8.png`;
+    } else {
+      return `https://bootdey.com/img/Content/avatar/avatar${userId}.png`;
+    }
   }
 }

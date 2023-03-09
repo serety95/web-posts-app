@@ -4,7 +4,7 @@
     </div>
     <div *ngIf="!postNotFound" class="row post shadow">
         <div class="post-header">
-            <img class="profile-pic shadow-sm "[src]="getAvatarLink(post?.userId)"
+            <img class="profile-pic shadow-sm" [src]="getAvatarLink(post?.userId)"
                  alt="">
             <span *ngIf="post?.user" class="post-info">
                 <a class="user-name" [routerLink]="['/users',post.user.id]">
